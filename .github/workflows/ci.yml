@@ -21,7 +21,6 @@ jobs:
           --health-retries 5
     env:
       RAILS_ENV: test
-      DATABASE_URL: postgres://postgres:postgres@127.0.0.1:${{ job.services.postgres.ports[5432] }}/parasocial_network_test
 
     steps:
       - name: Checkout code
@@ -36,6 +35,10 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+
+      - name: Set DATABASE_URL
+        run: |
+          echo "DATABASE_URL=postgres://postgres:postgres@127.0.0.1:${{ job.services.postgres.ports[5432] }}/parasocial_network_test" >> "$GITHUB_ENV"
 
       - name: Wait for Postgres
         run: |
