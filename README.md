@@ -1,24 +1,60 @@
-# README
+# ParasocialNetwork
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Development (recommended `bin/` scripts)
 
-Things you may want to cover:
+### Setup
 
-* Ruby version
+- **Install Ruby gems + prepare the database**:
 
-* System dependencies
+```bash
+bin/setup
+```
 
-* Configuration
+This runs `bundle install` (if needed) and `bin/rails db:prepare`.
 
-* Database creation
+### Run the app
 
-* Database initialization
+- **Start the development server**:
 
-* How to run the test suite
+```bash
+bin/dev
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+### Tests, linting, and security checks
 
-* Deployment instructions
+- **Run the full CI workflow locally** (setup + RSpec + lint + audits):
 
-* ...
+```bash
+bin/ci
+```
+
+- **Run just the test suite (RSpec)**:
+
+```bash
+bundle exec rspec
+```
+
+### Common Rails tasks
+
+- **Rails commands**:
+
+```bash
+bin/rails routes
+bin/rails console
+bin/rails db:migrate
+```
+
+- **Rake tasks**:
+
+```bash
+bin/rake -T
+```
+
+## Database (PostgreSQL)
+
+This app uses PostgreSQL. By default, development/test database names are:
+
+- `parasocial_network_development`
+- `parasocial_network_test`
+
+Configure connection details via `config/database.yml` or `DATABASE_URL`.
