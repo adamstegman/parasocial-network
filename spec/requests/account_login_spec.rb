@@ -1,12 +1,10 @@
 require "rails_helper"
 
 RSpec.describe "Account login", type: :request do
-  it "logs in an account created directly in setup" do
-    account = Account.create!(
-      email_address: "account@example.com",
-      password: "password",
-      password_confirmation: "password"
-    )
+  fixtures :accounts
+
+  it "logs in an account from fixtures" do
+    account = accounts(:one)
 
     get root_path
     expect(response).to redirect_to(new_session_path)
